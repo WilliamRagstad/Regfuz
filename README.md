@@ -7,7 +7,7 @@
 
 # About
 
-This project aims to make finding bugs and understanding the structure of regular expressions easier. This is a command line utility tool that generates valid inputs to a regular expressions.
+This project aims to make finding bugs and understanding the structure of [regular expressions](https://en.wikipedia.org/wiki/Regular_expression) easier. This is a command line utility tool that generates valid inputs to a regular expressions.
 
 
 
