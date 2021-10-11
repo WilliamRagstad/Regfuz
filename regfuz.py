@@ -50,6 +50,9 @@ class Regex:
 			elif c == '.':
 				# Any character
 				tree.children.append(NodeWithValue('ANY', None))
+			else:
+				# Append the character to the tree children
+				tree.children.append(NodeWithValue('CHAR', c))
 			i += 1
 
 		self.root = tree
@@ -114,6 +117,8 @@ def generate_pattern(node, quantityMax):
 	if isinstance(node, NodeWithValue):
 		if node.name == 'ANY':
 			return chr(random.randint(0,255))
+		if node.name == 'CHAR':
+			return node.value
 		elif node.name == 'BRACKET':
 			return random.choice(node.value)
 	elif isinstance(node, NodeWithChildren):
@@ -135,7 +140,7 @@ def generate_pattern(node, quantityMax):
 				pattern += generate_pattern(node.children[0], quantityMax)
 			return pattern
 
-	raise Exception('Invalid node type')
+	raise Exception('Invalid node type: ' + node.name + ' ' + str(node))
 
 # Main method that takes a regular expression as input and prints the tree
 def main():
