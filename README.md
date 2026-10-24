@@ -32,7 +32,25 @@ execute potentially expensive regex matches.
 
 ## Usage
 
-Requires Python 3.10 or later. Run directly from a checkout:
+Requires Python 3.10 or later, with no runtime dependencies. Install from a checkout:
+
+```sh
+python -m pip install .
+regfuz 'hel+o[0a-z\.]+' --seed 42 -t 5
+regfuz '[A-Z]{2}\d{3}' --seed 42 --max-length 5
+python -m regfuz '[a-z]+' --seed 7 -t 3
+```
+
+The installed `regfuz` command, `python -m regfuz`, and direct script entry point
+use the same CLI. Build wheel and source distributions using the standard
+[Python packaging workflow](https://packaging.python.org/en/latest/tutorials/packaging-projects/):
+
+```sh
+python -m pip install build
+python -m build
+```
+
+Run directly from a checkout:
 
 ```sh
 python regfuz.py 'hel+o[0a-z\.]+' --seed 42 -t 5
