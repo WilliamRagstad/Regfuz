@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "regfuz"
+name = "R-E-Fuzz"
 version = "0.2.0"
 description = "Bounded, seeded example generation for a defined Python regex subset"
 readme = "README.md"
@@ -17,7 +17,8 @@ dependencies = []
 Repository = "https://github.com/WilliamRagstad/Regfuz"
 
 [project.scripts]
-regfuz = "regfuz:main"
+r-e-fuzz = "r_e_fuzz:main"
+regfuz = "r_e_fuzz:main"
 
 [tool.setuptools]
-py-modules = ["regfuz"]
+py-modules = ["r_e_fuzz", "regfuz"]

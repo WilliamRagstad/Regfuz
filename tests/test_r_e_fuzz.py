@@ -4,7 +4,7 @@ import subprocess
 import sys
 import unittest
 
-from regfuz import LimitError, Regex, RegexError, generate_pattern
+from r_e_fuzz import LimitError, Regex, RegexError, generate_pattern
 
 
 class GenerationTests(unittest.TestCase):
@@ -60,13 +60,13 @@ class GenerationTests(unittest.TestCase):
         self.assertEqual(Regex('a{0}').generate(1, quantity=0, max_length=0), [''])
 
     def test_cli(self):
-        command = [sys.executable, 'regfuz.py', r'[a-z]+', '--seed', '12', '-t', '3']
+        command = [sys.executable, 'r_e_fuzz.py', r'[a-z]+', '--seed', '12', '-t', '3']
         first = subprocess.run(command, capture_output=True, text=True, check=True)
         second = subprocess.run(command, capture_output=True, text=True, check=True)
         self.assertEqual(first.stdout, second.stdout)
         self.assertEqual(len(first.stdout.splitlines()), 3)
         for args in [['(a)'], ['a', '-t', '-1'], ['a+', '-q', '0']]:
-            result = subprocess.run([sys.executable, 'regfuz.py'] + args,
+            result = subprocess.run([sys.executable, 'r_e_fuzz.py'] + args,
                                     capture_output=True, text=True)
             self.assertEqual(result.returncode, 2)
             self.assertEqual(result.stdout, '')
