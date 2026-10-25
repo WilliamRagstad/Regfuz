@@ -1,6 +1,6 @@
-<div align="center"><img src="logo.png" alt="Regfuz logo"><h3>Regular Expression Fuzzer</h3></div>
+<div align="center"><img src="logo.png" alt="ReFuzz logo" width="640"><h3>Regular Expression Fuzzer</h3></div>
 
-Regfuz generates examples of a defined subset of Python's string regular
+ReFuzz generates examples of a defined subset of Python's string regular
 expressions. Each returned example satisfies `re.fullmatch(pattern, example)`.
 It is a small generator, not a regex engine or a uniform sampler.
 
@@ -36,13 +36,17 @@ Requires Python 3.10 or later, with no runtime dependencies. Install from a chec
 
 ```sh
 python -m pip install .
-regfuz 'hel+o[0a-z\.]+' --seed 42 -t 5
-regfuz '[A-Z]{2}\d{3}' --seed 42 --max-length 5
-python -m regfuz '[a-z]+' --seed 7 -t 3
+refuzz 'hel+o[0a-z\.]+' --seed 42 -t 5
+refuzz '[A-Z]{2}\d{3}' --seed 42 --max-length 5
+python -m refuzz '[a-z]+' --seed 7 -t 3
 ```
 
-The installed `regfuz` command, `python -m regfuz`, and direct script entry point
-use the same CLI. Build wheel and source distributions using the standard
+The installed `refuzz` command, `python -m refuzz`, and direct script entry point
+use the same CLI. The distribution is named `ReFuzz`; Python imports use
+`refuzz`. The old `regfuz` command
+and module remain compatibility aliases.
+
+Build wheel and source distributions using the standard
 [Python packaging workflow](https://packaging.python.org/en/latest/tutorials/packaging-projects/):
 
 ```sh
@@ -53,10 +57,10 @@ python -m build
 Run directly from a checkout:
 
 ```sh
-python regfuz.py 'hel+o[0a-z\.]+' --seed 42 -t 5
-python regfuz.py '[a-zA-Z0-9\.]+' -t 1 -v --seed 7
-python regfuz.py '[a-z]+' -t 0 -v
-python regfuz.py 'a*bbbb' --max-length 4 --seed 1
+python refuzz.py 'hel+o[0a-z\.]+' --seed 42 -t 5
+python refuzz.py '[a-zA-Z0-9\.]+' -t 1 -v --seed 7
+python refuzz.py '[a-z]+' -t 0 -v
+python refuzz.py 'a*bbbb' --max-length 4 --seed 1
 ```
 
 `-v` prints the parsed atoms and uses `repr` for generated strings, so whitespace
@@ -82,7 +86,7 @@ clearly. A work-budget failure aborts the batch without printing partial results
 Bounds apply even with `-t 0`. Limits count Unicode code points, not encoded bytes.
 Increasing limits explicitly allows more memory and work.
 
-The same pattern, options, seed, and Regfuz/Python version reproduce the same
+The same pattern, options, seed, and ReFuzz/Python version reproduce the same
 ordered batch; global `random` state is untouched. Version-to-version sequence
 stability is not promised. Invalid input and exhausted limits exit with status 2
 and a message on stderr.
@@ -91,7 +95,7 @@ and a message on stderr.
 
 ```python
 import re
-from regfuz import Regex
+from refuzz import Regex
 
 pattern = r'[A-Z]{2}\d{3}'
 values = Regex(pattern).generate(20, seed=42, max_length=5)
