@@ -14,11 +14,10 @@ authors = [{name = "William Ragstad"}]
 dependencies = []
 
 [project.urls]
-Repository = "https://github.com/WilliamRagstad/Regfuz"
+Repository = "https://github.com/WilliamRagstad/ReFuzz"
 
 [project.scripts]
 refuzz = "refuzz:main"
-regfuz = "refuzz:main"
 
 [tool.setuptools]
-py-modules = ["refuzz", "regfuz"]
+py-modules = ["refuzz"]

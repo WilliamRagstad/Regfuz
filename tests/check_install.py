@@ -23,12 +23,12 @@ with tempfile.TemporaryDirectory() as directory:
         args = [pattern, '--seed', '42'] + extra
         output = run([str(cli)] + args)
         assert output == run([str(python), '-m', 'refuzz'] + args)
-        assert output == run([str(cli.with_name('regfuz'))] + args)
-        assert output == run([str(python), '-m', 'regfuz'] + args)
         assert all(re.fullmatch(pattern, value) for value in output.splitlines())
     assert 'ROOT' in run([str(cli), '[a-z]+', '-t', '0', '-v'])
     assert 'Test 1:' in run([str(cli), r'[a-zA-Z0-9\.]+', '-t', '1', '-v', '--seed', '7'])
     run([str(python), '-c', 'from refuzz import Regex; assert len(Regex("a").generate()) == 1'])
-    run([str(python), '-c', 'import regfuz, refuzz; assert regfuz.Regex is refuzz.Regex'])
     run([str(python), '-c', 'from importlib.metadata import metadata; assert metadata("ReFuzz")["Name"] == "ReFuzz"'])
+    assert not cli.with_name('regfuz').exists(), 'legacy console script was installed'
+    run([str(python), '-c', 'import importlib.util; assert importlib.util.find_spec("regfuz") is None'])
+    run([str(python), '-c', 'from importlib.metadata import distribution; d = distribution("ReFuzz"); assert [(e.name, e.value) for e in d.entry_points if e.group == "console_scripts"] == [("refuzz", "refuzz:main")]'])
 print('Installed CLI, module, API, and documented examples passed')

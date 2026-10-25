@@ -37,8 +37,7 @@ and generation work at 100,000 units per batch. Dot, categories, and negated
 classes sample ASCII; literals and positive ranges support Unicode.
 
 See the [reference](docs/reference.md) for exact syntax, bounds, seed guarantees,
-the Python API, and build instructions. The old `regfuz` command and imports
-remain compatibility aliases.
+the Python API, and build instructions.
 
 ## Tests
 
