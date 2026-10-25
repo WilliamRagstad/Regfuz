@@ -1,4 +1,4 @@
-"""R-E-Fuzz: generate bounded examples of a deliberately small Python regex subset."""
+"""ReFuzz: generate bounded examples of a deliberately small Python regex subset."""
 
 import argparse
 from dataclasses import dataclass

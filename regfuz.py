@@ -1,6 +1,6 @@
-"""Compatibility entry point; prefer r_e_fuzz and the r-e-fuzz command."""
+"""Compatibility entry point; prefer refuzz and the refuzz command."""
 
-from r_e_fuzz import (LimitError, Regex, RegexError, generate_pattern, main,
+from refuzz import (LimitError, Regex, RegexError, generate_pattern, main,
                       print_tree)
 
 __all__ = ['LimitError', 'Regex', 'RegexError', 'generate_pattern', 'main',
