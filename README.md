@@ -1,6 +1,6 @@
 <div align="center">
   <img src="logo.png" alt="ReFuzz logo" width="480">
-  <h1>ReFuzz</h1>
+  <hr/>
 </div>
 
 ```console
