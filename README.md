@@ -1,11 +1,14 @@
+<div align="center">
+  <img src="logo.png" alt="ReFuzz logo" width="480">
+  <h1>ReFuzz</h1>
+</div>
+
 ```console
 $ refuzz '[A-Z]{2}\d{3}' --seed 42 -t 3
 AX332
 VX960
 CG890
 ```
-
-<img src="logo.png" alt="ReFuzz logo" width="480">
 
 **Regex in, matching strings out.** ReFuzz generates test data for a defined
 subset of Python regular expressions. Every result satisfies `re.fullmatch`.
