@@ -41,8 +41,7 @@ python -m refuzz '[a-z]+' --seed 7 -t 3
 
 The installed `refuzz` command, `python -m refuzz`, and direct script entry point
 use the same CLI. The distribution is named `ReFuzz`; Python imports use
-`refuzz`. The old `regfuz` command
-and module remain compatibility aliases.
+`refuzz`.
 
 Build wheel and source distributions using the standard
 [Python packaging workflow](https://packaging.python.org/en/latest/tutorials/packaging-projects/):
@@ -88,6 +87,18 @@ The same pattern, options, seed, and ReFuzz/Python version reproduce the same
 ordered batch; global `random` state is untouched. Version-to-version sequence
 stability is not promised. Invalid input and exhausted limits exit with status 2
 and a message on stderr.
+
+## Migrating older installations
+
+Only `refuzz` is supported as a command and Python module. Replace old imports
+with `from refuzz import Regex` and script invocations with `python -m refuzz`.
+If the old distribution is installed, uninstall it before installing this checkout
+so its files and console script do not remain in your environment:
+
+```sh
+python -m pip uninstall regfuz
+python -m pip install --upgrade .
+```
 
 ## Python API and tests
 
