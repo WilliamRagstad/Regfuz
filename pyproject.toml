@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ReFuzz"
+version = "0.2.0"
+description = "Bounded, seeded example generation for a defined Python regex subset"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "William Ragstad"}]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/WilliamRagstad/Regfuz"
+
+[project.scripts]
+refuzz = "refuzz:main"
+regfuz = "refuzz:main"
+
+[tool.setuptools]
+py-modules = ["refuzz", "regfuz"]
